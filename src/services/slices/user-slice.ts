@@ -1,8 +1,8 @@
 import { getUserApi, loginUserApi, logoutApi, registerUserApi, TLoginData, TRegisterData, updateUserApi } from "@api";
 import { createAsyncThunk, createSlice, SerializedError } from "@reduxjs/toolkit";
 import { TUser } from "@utils-types";
-import { deleteCookie, setCookie } from "src/utils/cookie";
 import { RootState } from "../store";
+import { deleteCookie, setCookie } from "../../utils/cookie";
 
 export interface UserState {
     data: TUser | null,
@@ -51,7 +51,7 @@ export const logout = createAsyncThunk<void, void>(
   }
 );
 
-export const getUser = createAsyncThunk<TUser, void>(
+export const fetchUser = createAsyncThunk<TUser, void>(
   'user/get',
   async (_, { rejectWithValue }) => {
     const response = await getUserApi();
@@ -112,12 +112,12 @@ const userSlice = createSlice({
           ? (action.payload as SerializedError)
           : action.error;
       })
-      .addCase(getUser.pending, (state) =>{
+      .addCase(fetchUser.pending, (state) =>{
         state.registerError = undefined;
         state.isAuthed = false;
         state.data = null;
       })
-      .addCase(getUser.fulfilled, (state, action) =>{
+      .addCase(fetchUser.fulfilled, (state, action) =>{
         state.registerError = undefined;
         state.isAuthed = true;
         state.data = action.payload;

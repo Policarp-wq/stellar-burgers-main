@@ -14,12 +14,21 @@ import styles from './app.module.css';
 
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchIngredients } from '../../services/slices/ingredients-slice';
+import { useDispatch } from '../../services/store';
+import { fetchUser } from '../../services/slices/user-slice';
 
 const App = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() =>{
+    dispatch(fetchIngredients());
+    dispatch(fetchUser());
+  }, [])
   const handleModalClose = () => {
-    // Возвращаемся на предыдущий маршрут
     navigate(-1);
     // dispatch(closeOrderModalData());
   };

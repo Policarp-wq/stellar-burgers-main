@@ -41,8 +41,8 @@ const feedBuilder = createSlice({
 })
 
 export const selectFeed = (state: RootState) => state.feed.items;
-export const selectLoading = (state: RootState) => state.feed.loading;
+export const selectIsLoading = (state: RootState) => state.feed.loading;
 export const selectError = (state: RootState) => state.feed.error;
-export const selectOrders = (state: RootState) => state.feed.items?.orders || [];
+export const selectFeedOrders = (state: RootState) => state.feed.items?.orders || [];
 
 export default feedBuilder.reducer;

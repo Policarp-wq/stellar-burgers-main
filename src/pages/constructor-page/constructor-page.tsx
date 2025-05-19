@@ -6,9 +6,9 @@ import { BurgerIngredients } from '../../components';
 import { BurgerConstructor } from '../../components';
 import { Preloader } from '../../components/ui';
 import { FC } from 'react';
+import { useDispatch } from 'react-redux';
 
 export const ConstructorPage: FC = () => {
-  // alert('PIZDA')
   /** TODO: взять переменную из стора */
   const isIngredientsLoading = false;
 
