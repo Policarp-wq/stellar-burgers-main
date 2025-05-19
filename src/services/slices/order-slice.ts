@@ -1,5 +1,5 @@
 import { getOrderByNumberApi, getOrdersApi, orderBurgerApi, TNewOrderResponse } from "@api";
-import { createAsyncThunk, createSlice, SerializedError } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction, SerializedError } from "@reduxjs/toolkit";
 import { TOrder } from "@utils-types";
 import { RootState } from "../store";
 
@@ -7,7 +7,7 @@ export interface IOrderState {
   orders: TOrder[];
   orderRequest: boolean;
   orderError: null | SerializedError;
-  processedOrder: TOrder | null;
+  orderModalData: TOrder | null;
   isLoadingNumber: boolean;
   isLoadingOrders: boolean;
 }
@@ -16,7 +16,7 @@ export const initialState: IOrderState = {
   orders: [],
   orderRequest: false,
   orderError: null,
-  processedOrder: null,
+  orderModalData: null,
   isLoadingNumber: true,
   isLoadingOrders: true
 };
@@ -41,30 +41,34 @@ export const getOrdersList = createAsyncThunk<TOrder[], void>("order/list", asyn
 export const orderBuilder = createSlice({
     name: "order",
     initialState,
-    reducers: {},
+    reducers: {
+      setProcessedOrder(state, action: PayloadAction<TOrder | null>){
+        state.orderModalData = action.payload;
+      }
+    },
     extraReducers: (builder) => {
         builder.addCase(createOrder.pending, (state) =>{
             state.orderRequest = true;
-            state.processedOrder = null;
+            state.orderModalData = null;
         })
         .addCase(createOrder.fulfilled, (state, action) =>{
             state.orderRequest = false;
-            state.processedOrder = action.payload.order;
+            state.orderModalData = action.payload.order;
         })
         .addCase(createOrder.rejected, (state, action) => {
             state.orderRequest = false;
-            state.processedOrder = null;
+            state.orderModalData = null;
       })
       .addCase(getOrder.pending, (state) =>{
         state.isLoadingNumber = true;
       })
       .addCase(getOrder.fulfilled, (state, action) =>{
         state.isLoadingNumber = false;
-        state.processedOrder = action.payload;
+        state.orderModalData = action.payload;
       })
       .addCase(getOrder.rejected, (state) =>{
         state.isLoadingNumber = false;
-        state.processedOrder = null;
+        state.orderModalData = null;
       })
       .addCase(getOrdersList.pending, (state) =>{
         state.isLoadingOrders = true;
@@ -84,7 +88,7 @@ export const orderBuilder = createSlice({
 export const selectOrders = (state: RootState): TOrder[] => state.order.orders;
 export const selectOrderRequest = (state: RootState) =>
   state.order.orderRequest;
-export const selectProcessedOrder = (state: RootState) =>
-  state.order.processedOrder;
+export const selectOrderModalData = (state: RootState) =>
+  state.order.orderModalData;
 
 export default orderBuilder.reducer;
