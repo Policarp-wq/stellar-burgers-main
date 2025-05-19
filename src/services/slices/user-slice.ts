@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice, SerializedError } from "@reduxjs/toolkit
 import { TUser } from "@utils-types";
 import { RootState } from "../store";
 import { deleteCookie, setCookie } from "../../utils/cookie";
+import { stat } from "fs";
 
 export interface UserState {
     data: TUser | null,
@@ -24,7 +25,7 @@ export const registerUser = createAsyncThunk<TUser, TRegisterData>(
       return rejectWithValue(data);
     }
     setCookie('accessToken', data.accessToken);
-    setCookie('refreshToken', data.refreshToken);
+    localStorage.setItem('refreshToken', data.refreshToken);
     return data.user;
   }
 );
@@ -95,6 +96,7 @@ const userSlice = createSlice({
         state.registerError = action.meta.rejectedWithValue
           ? (action.payload as SerializedError)
           : action.error;
+        alert(state.registerError.message);
       })
       .addCase(loginUser.pending, (state) =>{
         state.isAuthed = false;
@@ -128,6 +130,8 @@ const userSlice = createSlice({
       .addCase(logout.fulfilled, (state) => {
         state.isAuthed = false;
         state.data = null;
+        state.registerError = undefined;
+        state.loginError = undefined;
       })
       
   }

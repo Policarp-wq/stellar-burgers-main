@@ -18,7 +18,7 @@ import {  useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchIngredients } from '../../services/slices/ingredients-slice';
 import { useDispatch } from '../../services/store';
-import { fetchUser } from '../../services/slices/user-slice';
+import { fetchUser, selectIsAuthed } from '../../services/slices/user-slice';
 
 const App = () => {
   const navigate = useNavigate();
@@ -43,8 +43,8 @@ const App = () => {
         <Route path='/register' element={<Register />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/profile/orders' element={<ProfileOrders />} />
+        <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute> } />
+        <Route path='/profile/orders' element={<ProtectedRoute><ProfileOrders /></ProtectedRoute>} />
 
         <Route path='/*' element={<NotFound404 />} />
 
@@ -84,7 +84,7 @@ const ProtectedRoute = ({
   children: JSX.Element;
   anonymous?: boolean;
 }) => {
-  const isAuthenticated = false;
+  const isAuthenticated = useSelector(selectIsAuthed);
 
   if (anonymous && isAuthenticated) {
     return <Navigate to='/' replace />;
