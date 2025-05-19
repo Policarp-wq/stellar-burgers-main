@@ -65,9 +65,9 @@ const App = () => {
           }
         />
         <Route
-          path='/profile/orders:/:number'
+          path='/profile/orders/:number'
           element={
-            <Modal title='Ингредиент' onClose={handleModalClose}>
+            <Modal title='Информация о заказе' onClose={handleModalClose}>
               <OrderInfo />
             </Modal>
           }

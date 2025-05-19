@@ -3,8 +3,8 @@ import { TConstructorIngredient } from '@utils-types';
 import { BurgerConstructorUI } from '@ui';
 import { clearBuilder, selectConstructorItems } from '../../services/slices/constructor-slice';
 import { useDispatch, useSelector } from '../../services/store';
-import { createOrder, selectOrderModalData, selectOrderRequest } from '../../services/slices/order-slice';
-import { selectUserData } from '../../services/slices/user-slice';
+import { createOrder, selectOrderModalData, selectOrderRequest, setOrderModalData } from '../../services/slices/order-slice';
+import { selectIsAuthed, selectUserData } from '../../services/slices/user-slice';
 import { useNavigate } from 'react-router-dom';
 
 export const BurgerConstructor: FC = () => {
@@ -12,13 +12,28 @@ export const BurgerConstructor: FC = () => {
   const constructorItems = useSelector(selectConstructorItems);
   const orderRequest = useSelector(selectOrderRequest);
   const orderModalData = useSelector(selectOrderModalData);
+  const isAuthed = useSelector(selectIsAuthed);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onOrderClick = async () => {
-    if (!constructorItems.bun || orderRequest) return; 
+    if (!constructorItems.bun || orderRequest) return;
+    if(!isAuthed){
+      navigate('login');
+      return;
+    }
+    try{
+      await dispatch(createOrder(constructorItems.ingredients.map(v => v._id))).unwrap();
+      dispatch(clearBuilder());
+    }
+    catch(error){
+      console.error(error);
+    }
+    
   };
 
   const closeOrderModal = () => {
-    
+    dispatch(setOrderModalData(null))
   };
 
   const price = useMemo(

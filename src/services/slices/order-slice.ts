@@ -27,7 +27,7 @@ export const createOrder = createAsyncThunk<TNewOrderResponse, string[]>("order/
     return data;
 })
 
-export const getOrder = createAsyncThunk<TOrder, number>("order/getOrder", async(num, {rejectWithValue}) =>{
+export const fetchOrderByNumber = createAsyncThunk<TOrder, number>("order/getOrder", async(num, {rejectWithValue}) =>{
     const data = await getOrderByNumberApi(num);
     if(!data.success) return rejectWithValue(data);
     return data.orders[0];
@@ -42,7 +42,7 @@ export const orderBuilder = createSlice({
     name: "order",
     initialState,
     reducers: {
-      setProcessedOrder(state, action: PayloadAction<TOrder | null>){
+      setOrderModalData(state, action: PayloadAction<TOrder | null>){
         state.orderModalData = action.payload;
       }
     },
@@ -59,14 +59,14 @@ export const orderBuilder = createSlice({
             state.orderRequest = false;
             state.orderModalData = null;
       })
-      .addCase(getOrder.pending, (state) =>{
+      .addCase(fetchOrderByNumber.pending, (state) =>{
         state.isLoadingNumber = true;
       })
-      .addCase(getOrder.fulfilled, (state, action) =>{
+      .addCase(fetchOrderByNumber.fulfilled, (state, action) =>{
         state.isLoadingNumber = false;
         state.orderModalData = action.payload;
       })
-      .addCase(getOrder.rejected, (state) =>{
+      .addCase(fetchOrderByNumber.rejected, (state) =>{
         state.isLoadingNumber = false;
         state.orderModalData = null;
       })
@@ -90,5 +90,10 @@ export const selectOrderRequest = (state: RootState) =>
   state.order.orderRequest;
 export const selectOrderModalData = (state: RootState) =>
   state.order.orderModalData;
+
+export const selectIsNumberOrderLoading = (state: RootState) => state.order.isLoadingNumber;
+export const selectIsOrdersListLoading = (state: RootState) => state.order.isLoadingOrders;
+
+export const {setOrderModalData} = orderBuilder.actions;
 
 export default orderBuilder.reducer;
