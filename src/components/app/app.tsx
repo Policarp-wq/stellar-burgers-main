@@ -19,6 +19,7 @@ import { useEffect } from 'react';
 import { fetchIngredients } from '../../services/slices/ingredients-slice';
 import { useDispatch } from '../../services/store';
 import { fetchUser, selectIsAuthed } from '../../services/slices/user-slice';
+import { setOrderModalData } from '../../services/slices/order-slice';
 
 const App = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const App = () => {
   }, [])
   const handleModalClose = () => {
     navigate(-1);
-    // dispatch(closeOrderModalData());
+    dispatch(setOrderModalData(null));
   };
   return (
     <div className={styles.app}>
@@ -39,10 +40,10 @@ const App = () => {
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
 
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/login' element={<ProtectedRoute anonymous={true}><Login /></ProtectedRoute> } />
+        <Route path='/register' element={<ProtectedRoute anonymous={true}><Register /></ProtectedRoute> } />
+        <Route path='/forgot-password' element={<ProtectedRoute anonymous={true}><ForgotPassword /></ProtectedRoute>} />
+        <Route path='/reset-password' element={<ProtectedRoute anonymous={true}><ResetPassword /></ProtectedRoute>} />
         <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute> } />
         <Route path='/profile/orders' element={<ProtectedRoute><ProfileOrders /></ProtectedRoute>} />
 
