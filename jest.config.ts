@@ -90,7 +90,11 @@ const config: Config = {
   // ],
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
-  // moduleNameMapper: {},
+  moduleNameMapper: {
+    '^@api$': '<rootDir>/src/utils/burger-api', // путь до вашей папки api
+    '^@utils-types$': '<rootDir>/src/utils/types', // путь до types.ts
+    // добавьте другие алиасы по необходимости
+  },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
   // modulePathIgnorePatterns: [],

@@ -3,14 +3,14 @@ import { TConstructorIngredient, TIngredient } from '@utils-types';
 import { v4 as uuidv4 } from 'uuid';
 import { RootState } from '../store';
 
-interface IBuilderState {
+export interface IConstructorState {
   constructorItems: {
-    bun: TIngredient | null;
+    bun: TConstructorIngredient | null;
     ingredients: TConstructorIngredient[];
   };
 }
 
-const initialState: IBuilderState = {
+const initialState: IConstructorState = {
   constructorItems: {
     bun: null,
     ingredients: []
@@ -22,9 +22,10 @@ const constructorSlice = createSlice({
   initialState,
   reducers: {
     addBun(state, action: PayloadAction<TIngredient>) {
+       const ingredient = {...action.payload, id: uuidv4()};
         if (action.payload.type === 'bun') 
             return;
-         state.constructorItems.bun = action.payload;
+         state.constructorItems.bun = ingredient;
     },
     addIngredient(state, action: PayloadAction<TIngredient>){
         const ingredient = {...action.payload, id: uuidv4()};
@@ -47,9 +48,9 @@ const constructorSlice = createSlice({
             (item) => item.id !== action.payload.id
           );
     },
-    moveIngredient(state, action: PayloadAction<{ingredient: TIngredient, direction: 'up' | 'down' }>){
+    moveIngredient(state, action: PayloadAction<{ingredient: TConstructorIngredient, direction: 'up' | 'down' }>){
       const {ingredient, direction} = action.payload;
-      const index = state.constructorItems.ingredients.findIndex(x => x._id === ingredient._id);
+      const index = state.constructorItems.ingredients.findIndex(x => x.id === ingredient.id);
       if(index === -1 || state.constructorItems.ingredients.length < 2)
         return;
       
