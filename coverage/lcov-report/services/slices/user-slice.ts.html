@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.86% </span>
+                <span class="strong">61.8% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>79/144</span>
+                <span class='fraction'>89/144</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.86% </span>
+                <span class="strong">61.8% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>79/144</span>
+                <span class='fraction'>89/144</span>
             </div>
         
             
@@ -295,28 +295,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -326,6 +310,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -335,12 +330,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -439,9 +439,9 @@ const userSlice = createSlice({
 <span class="cstat-no" title="statement not covered" >        state.data = null;</span>
       })
       .addCase(registerUser.fulfilled, (state, action) =&gt; {
-<span class="cstat-no" title="statement not covered" >        state.registerError = undefined;</span>
-<span class="cstat-no" title="statement not covered" >        state.isAuthed = true;</span>
-<span class="cstat-no" title="statement not covered" >        state.data = action.payload;</span>
+        state.registerError = undefined;
+        state.isAuthed = true;
+        state.data = action.payload;
       })
       .addCase(registerUser.rejected, (state, action) =&gt; {
 <span class="cstat-no" title="statement not covered" >        state.isAuthed = false;</span>
@@ -456,9 +456,9 @@ const userSlice = createSlice({
 <span class="cstat-no" title="statement not covered" >        state.registerError = undefined;</span>
       })
       .addCase(loginUser.fulfilled, (state, action) =&gt;{
-<span class="cstat-no" title="statement not covered" >        state.registerError = undefined;</span>
-<span class="cstat-no" title="statement not covered" >        state.isAuthed = true;</span>
-<span class="cstat-no" title="statement not covered" >        state.data = action.payload;</span>
+        state.registerError = undefined;
+        state.isAuthed = true;
+        state.data = action.payload;
       })
       .addCase(loginUser.rejected, (state, action) =&gt; {
 <span class="cstat-no" title="statement not covered" >        state.isAuthed = false;</span>
@@ -481,10 +481,10 @@ const userSlice = createSlice({
 <span class="cstat-no" title="statement not covered" >        state.data = action.payload;</span>
       })
       .addCase(logout.fulfilled, (state) =&gt; {
-<span class="cstat-no" title="statement not covered" >        state.isAuthed = false;</span>
-<span class="cstat-no" title="statement not covered" >        state.data = null;</span>
-<span class="cstat-no" title="statement not covered" >        state.registerError = undefined;</span>
-<span class="cstat-no" title="statement not covered" >        state.loginError = undefined;</span>
+        state.isAuthed = false;
+        state.data = null;
+        state.registerError = undefined;
+        state.loginError = undefined;
       })
       
   }
@@ -502,7 +502,7 @@ export default userSlice.reducer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-22T20:32:25.307Z
+                at 2025-05-23T19:53:01.314Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

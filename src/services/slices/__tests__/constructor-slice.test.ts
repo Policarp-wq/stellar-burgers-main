@@ -36,36 +36,36 @@ const regular: TIngredient = {
   };
 
 // Можно использовать для тестов или сторибуков
-const mockIngredients: TIngredient[] = [
-  bun,
-  {
-    _id: '2',
-    name: 'Соус фирменный',
-    type: 'sauce',
-    proteins: 2,
-    fat: 8,
-    carbohydrates: 15,
-    calories: 100,
-    price: 20,
-    image: '',
-    image_large: '',
-    image_mobile: ''
-  },
-  regular,
-  {
-    _id: '4',
-    name: 'Салат свежий',
-    type: 'main',
-    proteins: 1,
-    fat: 0,
-    carbohydrates: 3,
-    calories: 15,
-    price: 10,
-    image: '',
-    image_large: '',
-    image_mobile: ''
-  }
-];
+  const mockIngredients: TIngredient[] = [
+    bun,
+    {
+      _id: '2',
+      name: 'Соус фирменный',
+      type: 'sauce',
+      proteins: 2,
+      fat: 8,
+      carbohydrates: 15,
+      calories: 100,
+      price: 20,
+      image: '',
+      image_large: '',
+      image_mobile: ''
+    },
+    regular,
+    {
+      _id: '4',
+      name: 'Салат свежий',
+      type: 'main',
+      proteins: 1,
+      fat: 0,
+      carbohydrates: 3,
+      calories: 15,
+      price: 10,
+      image: '',
+      image_large: '',
+      image_mobile: ''
+    }
+  ];
 
 describe('add ingredient action', () => {
     test('add bun', () => {

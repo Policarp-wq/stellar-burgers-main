@@ -33,7 +33,7 @@ export const fetchOrderByNumber = createAsyncThunk<TOrder, number>("order/getOrd
     return data.orders[0];
 });
 
-export const getOrdersList = createAsyncThunk<TOrder[], void>("order/list", async(_, {rejectWithValue}) =>{
+export const fecthOrdersList = createAsyncThunk<TOrder[], void>("order/list", async(_, {rejectWithValue}) =>{
     const data = await getOrdersApi();
     return data;
 })
@@ -70,14 +70,14 @@ export const orderBuilder = createSlice({
         state.isLoadingNumber = false;
         state.orderModalData = null;
       })
-      .addCase(getOrdersList.pending, (state) =>{
+      .addCase(fecthOrdersList.pending, (state) =>{
         state.isLoadingOrders = true;
       })
-      .addCase(getOrdersList.fulfilled, (state, action) =>{
+      .addCase(fecthOrdersList.fulfilled, (state, action) =>{
         state.isLoadingOrders = false;
         state.orders = action.payload;
       })
-      .addCase(getOrdersList.rejected, (state, action) =>{
+      .addCase(fecthOrdersList.rejected, (state, action) =>{
         state.isLoadingOrders = false;
         state.orders = [];
         state.orderError = action.error;
