@@ -20,10 +20,9 @@ import {
   useLocation,
   useNavigate
 } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchIngredients } from '../../services/slices/ingredients-slice';
-import { useDispatch } from '../../services/store';
+import { useDispatch, useSelector } from '../../services/store';
 import { fetchUser, selectIsAuthed } from '../../services/slices/user-slice';
 import { setOrderModalData } from '../../services/slices/order-slice';
 

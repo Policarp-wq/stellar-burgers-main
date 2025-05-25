@@ -6,11 +6,9 @@ import {
   fetchFeedItems,
   selectError,
   selectFeed,
-  selectFeedOrders,
   selectIsLoading
 } from '../../services/slices/feed-slice';
-import { useDispatch } from '../../services/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../services/store';
 
 export const Feed: FC = () => {
   /** TODO: взять переменную из стора */

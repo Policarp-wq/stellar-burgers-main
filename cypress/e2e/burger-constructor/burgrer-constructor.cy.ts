@@ -2,6 +2,9 @@ const baseURL = process.env.BURGER_API_URL;
 import ingredients from '../../fixtures/ingredients.json';
 import orderCreated from '../../fixtures/orders-created.json'
 
+
+
+
 describe('Modal window testing', () =>{
     beforeEach(() => {
         cy.intercept(`${baseURL}/ingredients`, ingredients);
@@ -9,10 +12,12 @@ describe('Modal window testing', () =>{
         cy.contains('Соберите бургер').should('exist');
     })
     it('Modal window can be opened and closed', () => {
+        cy.get('#modals').as('modalWindow');
+        const modalWindowSelector = '@modalWindow';
         cy.contains('Краторная булка').click();
-        cy.get('#modals').contains('Краторная булка');
-        cy.get('#modals').get('button').click();
-        cy.contains('#modals').should('not.exist');
+        cy.get(modalWindowSelector).contains('Краторная булка');
+        cy.get(modalWindowSelector).find('button').click();
+        cy.contains(modalWindowSelector).should('not.exist');
     })
 })
 
@@ -57,6 +62,8 @@ describe('Order constructor testing', () =>{
         cy.location('pathname').should('eq', '/login');
     })
     it('When user is authed order can be created', () => {
+        cy.get('#modals').as('modalWindow');
+        const modalWindowSelector = '@modalWindow';
         cy.intercept('POST',`**/api/orders`, orderCreated);
         cy.login();
         cy.contains('Краторная булка').closest('li').find('button').click();
@@ -66,7 +73,7 @@ describe('Order constructor testing', () =>{
         cy.contains('идентификатор заказа');
         cy.contains('78651');
 
-        cy.get('#modals').find('button').click();
+        cy.get(modalWindowSelector).find('button').click();
         cy.contains('Выберите булки');
         cy.contains('Выберите начинку');
     })
