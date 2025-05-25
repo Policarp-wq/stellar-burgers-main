@@ -2,9 +2,6 @@ const baseURL = process.env.BURGER_API_URL;
 import ingredients from '../../fixtures/ingredients.json';
 import orderCreated from '../../fixtures/orders-created.json'
 
-
-
-
 describe('Modal window testing', () =>{
     beforeEach(() => {
         cy.intercept(`${baseURL}/ingredients`, ingredients);
