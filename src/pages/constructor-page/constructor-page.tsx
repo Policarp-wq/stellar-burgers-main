@@ -6,15 +6,18 @@ import { BurgerIngredients } from '../../components';
 import { BurgerConstructor } from '../../components';
 import { Preloader } from '../../components/ui';
 import { FC, useEffect } from 'react';
-import { fetchIngredients, selectIsLoading } from '../../services/slices/ingredients-slice';
+import {
+  fetchIngredients,
+  selectIsLoading
+} from '../../services/slices/ingredients-slice';
 
 export const ConstructorPage: FC = () => {
   /** TODO: взять переменную из стора */
   const isIngredientsLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
-  useEffect(() =>{
+  useEffect(() => {
     dispatch(fetchIngredients());
-  }, [])
+  }, []);
   return (
     <>
       {isIngredientsLoading ? (

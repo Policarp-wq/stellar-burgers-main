@@ -14,7 +14,7 @@ import styles from './app.module.css';
 
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchIngredients } from '../../services/slices/ingredients-slice';
 import { useDispatch } from '../../services/store';
@@ -25,10 +25,10 @@ const App = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() =>{
+  useEffect(() => {
     dispatch(fetchIngredients());
     dispatch(fetchUser());
-  }, [])
+  }, []);
   const handleModalClose = () => {
     navigate(-1);
     dispatch(setOrderModalData(null));
@@ -40,12 +40,54 @@ const App = () => {
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
 
-        <Route path='/login' element={<ProtectedRoute anonymous={true}><Login /></ProtectedRoute> } />
-        <Route path='/register' element={<ProtectedRoute anonymous={true}><Register /></ProtectedRoute> } />
-        <Route path='/forgot-password' element={<ProtectedRoute anonymous={true}><ForgotPassword /></ProtectedRoute>} />
-        <Route path='/reset-password' element={<ProtectedRoute anonymous={true}><ResetPassword /></ProtectedRoute>} />
-        <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute> } />
-        <Route path='/profile/orders' element={<ProtectedRoute><ProfileOrders /></ProtectedRoute>} />
+        <Route
+          path='/login'
+          element={
+            <ProtectedRoute anonymous>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/register'
+          element={
+            <ProtectedRoute anonymous>
+              <Register />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/forgot-password'
+          element={
+            <ProtectedRoute anonymous>
+              <ForgotPassword />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/reset-password'
+          element={
+            <ProtectedRoute anonymous>
+              <ResetPassword />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/profile'
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/profile/orders'
+          element={
+            <ProtectedRoute>
+              <ProfileOrders />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path='/*' element={<NotFound404 />} />
 

@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -35,3 +35,30 @@
 //     }
 //   }
 // }
+const baseURL = process.env.BURGER_API_URL;
+declare namespace Cypress {
+  interface Chainable {
+    login(): Chainable<void>;
+  }
+}
+
+Cypress.Commands.add('login', () => {
+    cy.intercept(`**/auth/login`, {
+      statusCode: 200,
+      body: {
+        success: true,
+        refreshToken: "mock",
+        accessToken: "mock",
+        user: {
+          email: 'test_user@example.com',
+          name: 'Test User'
+        }
+      }
+    }).as('loginRequest');
+
+   cy.visit('/login');
+  cy.get('input[name="email"]').type('random@random.ru');
+  cy.get('input[name="password"]').type('randomrandomiwrejs[g9i4398ru0[39u0-283yu4=09rj04593uy8u2j923g-ujkpo');
+  cy.contains('Войти').click();
+  cy.wait('@loginRequest');
+});

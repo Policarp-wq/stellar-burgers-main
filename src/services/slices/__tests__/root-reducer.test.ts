@@ -1,6 +1,6 @@
-import store from "../../store"
+import store from '../../store';
 
-describe('rootReducer initialization', () => {
+describe('RootReducer initialization test', () => {
   test('should initialize all slices in the state', () => {
     const state = store.getState();
     expect(state).toHaveProperty('feed');

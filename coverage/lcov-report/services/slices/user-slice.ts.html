@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.8% </span>
+                <span class="strong">64.1% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>89/144</span>
+                <span class='fraction'>100/156</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">61.8% </span>
+                <span class="strong">64.1% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>89/144</span>
+                <span class='fraction'>100/156</span>
             </div>
         
             
@@ -207,7 +207,31 @@
 <a name='L142'></a><a href='#L142'>142</a>
 <a name='L143'></a><a href='#L143'>143</a>
 <a name='L144'></a><a href='#L144'>144</a>
-<a name='L145'></a><a href='#L145'>145</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -348,27 +372,39 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { getUserApi, loginUserApi, logoutApi, registerUserApi, TLoginData, TRegisterData, updateUserApi } from "@api";
-import { createAsyncThunk, createSlice, SerializedError } from "@reduxjs/toolkit";
-import { TUser } from "@utils-types";
-import { RootState } from "../store";
-import { deleteCookie, setCookie } from "../../utils/cookie";
-import { stat } from "fs";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
+  getUserApi,
+  loginUserApi,
+  logoutApi,
+  registerUserApi,
+  TLoginData,
+  TRegisterData,
+  updateUserApi
+} from '@api';
+import {
+  createAsyncThunk,
+  createSlice,
+  SerializedError
+} from '@reduxjs/toolkit';
+import { TUser } from '@utils-types';
+import { RootState } from '../store';
+import { deleteCookie, setCookie } from '../../utils/cookie';
+import { stat } from 'fs';
 &nbsp;
 export interface UserState {
-    data: TUser | null,
-    isAuthed: boolean,
-    loginError?: SerializedError
-    registerError?: SerializedError
+  data: TUser | null;
+  isAuthed: boolean;
+  loginError?: SerializedError;
+  registerError?: SerializedError;
 }
 &nbsp;
 const initialState: UserState = {
-    data: null,
-    isAuthed: false
-}
+  data: null,
+  isAuthed: false
+};
 &nbsp;
 export const registerUser = createAsyncThunk&lt;TUser, TRegisterData&gt;(
   'user/register',
@@ -400,7 +436,7 @@ export const logout = createAsyncThunk&lt;void, void&gt;(
   'user/logout',
   async (_, { rejectWithValue }) =&gt; {
 <span class="cstat-no" title="statement not covered" >    await logoutApi();</span>
-<span class="cstat-no" title="statement not covered" >    deleteCookie('accessToken')</span>
+<span class="cstat-no" title="statement not covered" >    deleteCookie('accessToken');</span>
 <span class="cstat-no" title="statement not covered" >    localStorage.removeItem('refreshToken');</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 );
@@ -451,11 +487,11 @@ const userSlice = createSlice({
 <span class="cstat-no" title="statement not covered" >          : action.error;</span>
 <span class="cstat-no" title="statement not covered" >        alert(state.registerError.message);</span>
       })
-      .addCase(loginUser.pending, (state) =&gt;{
+      .addCase(loginUser.pending, (state) =&gt; {
 <span class="cstat-no" title="statement not covered" >        state.isAuthed = false;</span>
 <span class="cstat-no" title="statement not covered" >        state.registerError = undefined;</span>
       })
-      .addCase(loginUser.fulfilled, (state, action) =&gt;{
+      .addCase(loginUser.fulfilled, (state, action) =&gt; {
         state.registerError = undefined;
         state.isAuthed = true;
         state.data = action.payload;
@@ -467,17 +503,17 @@ const userSlice = createSlice({
 <span class="cstat-no" title="statement not covered" >          ? (action.payload as SerializedError)</span>
 <span class="cstat-no" title="statement not covered" >          : action.error;</span>
       })
-      .addCase(fetchUser.pending, (state) =&gt;{
+      .addCase(fetchUser.pending, (state) =&gt; {
 <span class="cstat-no" title="statement not covered" >        state.registerError = undefined;</span>
 <span class="cstat-no" title="statement not covered" >        state.isAuthed = false;</span>
 <span class="cstat-no" title="statement not covered" >        state.data = null;</span>
       })
-      .addCase(fetchUser.fulfilled, (state, action) =&gt;{
+      .addCase(fetchUser.fulfilled, (state, action) =&gt; {
 <span class="cstat-no" title="statement not covered" >        state.registerError = undefined;</span>
 <span class="cstat-no" title="statement not covered" >        state.isAuthed = true;</span>
 <span class="cstat-no" title="statement not covered" >        state.data = action.payload;</span>
       })
-      .addCase(updateUser.fulfilled, (state, action) =&gt;{
+      .addCase(updateUser.fulfilled, (state, action) =&gt; {
 <span class="cstat-no" title="statement not covered" >        state.data = action.payload;</span>
       })
       .addCase(logout.fulfilled, (state) =&gt; {
@@ -485,14 +521,14 @@ const userSlice = createSlice({
         state.data = null;
         state.registerError = undefined;
         state.loginError = undefined;
-      })
-      
+      });
   }
 });
 export const selectIsAuthed = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt; state.</span>user.isAuthed;
 export const selectUserData = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt; state.</span>user.data;
 export const selectLoginError = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt; state.</span>user.loginError;
-export const selectRegisterError = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt; state.</span>user.registerError;
+export const selectRegisterError = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >  state.user.registerError;</span>
 &nbsp;
 export default userSlice.reducer;
 &nbsp;</pre></td></tr></table></pre>
@@ -502,7 +538,7 @@ export default userSlice.reducer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-23T19:53:01.314Z
+                at 2025-05-25T07:40:09.623Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.14% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>48/48</span>
+                <span class='fraction'>53/54</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">98.14% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>48/48</span>
+                <span class='fraction'>53/54</span>
             </div>
         
             
@@ -111,7 +111,13 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -159,10 +165,20 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { getFeedsApi, TFeedsResponse } from "@api";
-import { createAsyncThunk, createSlice, SerializedError } from "@reduxjs/toolkit";
-import { TOrdersData } from "@utils-types";
-import { RootState } from "../store";
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { getFeedsApi, TFeedsResponse } from '@api';
+import {
+  createAsyncThunk,
+  createSlice,
+  SerializedError
+} from '@reduxjs/toolkit';
+import { TOrdersData } from '@utils-types';
+import { RootState } from '../store';
 &nbsp;
 export interface FeedState {
   items: TOrdersData | null;
@@ -182,29 +198,31 @@ export const fetchFeedItems = createAsyncThunk&lt;TFeedsResponse, void&gt;(
 );
 &nbsp;
 const feedBuilder = createSlice({
-    name: "feed",
-    initialState,
-    reducers: {},
-    extraReducers: (builder) =&gt; {
-        builder.addCase(fetchFeedItems.pending, (state) =&gt; {
-            state.isLoading = true;
-            state.items = null;
-        })
-        .addCase(fetchFeedItems.fulfilled, (state, action) =&gt; {
-            state.isLoading = false;
-            state.items = action.payload;
-        })
-        .addCase(fetchFeedItems.rejected, (state, action) =&gt; {
-            state.isLoading = false;
-            state.error = action.error
-        })
-    },
-})
+  name: 'feed',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) =&gt; {
+    builder
+      .addCase(fetchFeedItems.pending, (state) =&gt; {
+        state.isLoading = true;
+        state.items = null;
+      })
+      .addCase(fetchFeedItems.fulfilled, (state, action) =&gt; {
+        state.isLoading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchFeedItems.rejected, (state, action) =&gt; {
+        state.isLoading = false;
+        state.error = action.error;
+      });
+  }
+});
 &nbsp;
 export const selectFeed = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt; state.</span>feed.items;
 export const selectIsLoading = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt; state.</span>feed.isLoading;
 export const selectError = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt; state.</span>feed.error;
-export const selectFeedOrders = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt; state.feed.items?.orders || [];</span>
+export const selectFeedOrders = <span class="fstat-no" title="function not covered" >(state: RootState) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >  state.feed.items?.orders || [];</span>
 &nbsp;
 export default feedBuilder.reducer;
 &nbsp;</pre></td></tr></table></pre>
@@ -214,7 +232,7 @@ export default feedBuilder.reducer;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-05-23T19:53:01.314Z
+                at 2025-05-25T07:40:09.623Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
