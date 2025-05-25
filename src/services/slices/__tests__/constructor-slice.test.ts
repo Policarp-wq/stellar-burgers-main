@@ -3,15 +3,9 @@ import constructortReducer, {
   addIngredient,
   deleteIngredient,
   IConstructorState,
+  initialState,
   moveIngredient
 } from '../constructor-slice';
-
-const initialState: IConstructorState = {
-  constructorItems: {
-    bun: null,
-    ingredients: []
-  }
-};
 
 const bun: TIngredient = {
   _id: '1',

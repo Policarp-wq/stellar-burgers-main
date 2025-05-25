@@ -1,19 +1,13 @@
 import { TOrder } from '@utils-types';
 import userReducer, {
+  initialState,
   loginUser,
   logout,
-  registerUser,
-  UserState
+  registerUser
 } from '../user-slice';
 import { TLoginData, TRegisterData } from '@api';
 
 import * as apiModule from '@api';
-import exp from 'constants';
-
-const initialState: UserState = {
-  data: null,
-  isAuthed: false
-};
 
 describe('Register, Log in and out tesing', () => {
   test('Login test', () => {

@@ -1,16 +1,11 @@
 import { getIngredientsApi } from '@api';
-import { fetchIngredients, IIngredientsState } from '../ingredients-slice';
+import {
+  fetchIngredients,
+  IIngredientsState,
+  initialState
+} from '../ingredients-slice';
 import ingredientsReducer from '../ingredients-slice';
 import { TIngredient } from '@utils-types';
-
-const initialState: IIngredientsState = {
-  items: [],
-  buns: [],
-  mains: [],
-  sauces: [],
-  isLoading: true,
-  error: null
-};
 
 describe('Ingredients request testing', () => {
   test('On request isLoading changes', () => {

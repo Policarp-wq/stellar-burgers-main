@@ -1,12 +1,5 @@
 import { TFeedsResponse } from '@api';
-import feedReducer, { FeedState, fetchFeedItems } from '../feed-slice';
-import { TIngredient, TOrdersData } from '@utils-types';
-
-export const initialState: FeedState = {
-  items: null,
-  isLoading: false,
-  error: null
-};
+import feedReducer, { fetchFeedItems, initialState } from '../feed-slice';
 
 describe('Feed request testing', () => {
   test('On request isLoading changes', () => {

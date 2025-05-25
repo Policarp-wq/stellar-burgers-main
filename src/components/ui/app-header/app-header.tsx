@@ -10,7 +10,8 @@ import {
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 
-export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
+export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
+  return (
   <header className={styles.header}>
     <nav className={`${styles.menu} p-4`}>
       <div className={styles.menu_part_left}>
@@ -66,3 +67,4 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => (
     </nav>
   </header>
 );
+}

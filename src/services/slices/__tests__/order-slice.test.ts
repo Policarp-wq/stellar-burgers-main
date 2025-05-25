@@ -1,14 +1,9 @@
 import { TOrder } from '@utils-types';
-import orderReducer, { fecthOrdersList, IOrderState } from '../order-slice';
-
-export const initialState: IOrderState = {
-  orders: [],
-  orderRequest: false,
-  orderError: null,
-  orderModalData: null,
-  isLoadingNumber: true,
-  isLoadingOrders: true
-};
+import orderReducer, {
+  fecthOrdersList,
+  initialState,
+  IOrderState
+} from '../order-slice';
 
 describe('Order request testing', () => {
   test('On request isLoading changes', () => {

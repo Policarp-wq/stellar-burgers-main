@@ -24,7 +24,7 @@ export type IIngredientsState = {
   error: null | SerializedError;
 };
 
-const initialState: IIngredientsState = {
+export const initialState: IIngredientsState = {
   items: [],
   buns: [],
   mains: [],

@@ -24,7 +24,7 @@ export interface UserState {
   registerError?: SerializedError;
 }
 
-const initialState: UserState = {
+export const initialState: UserState = {
   data: null,
   isAuthed: false
 };
